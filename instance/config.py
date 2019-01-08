@@ -4,3 +4,7 @@ class Config():
     """Base Configurations Class."""
     DEBUG = False
 
+class DevelopmentConfig(Config):
+    """Development Configurations Class."""
+    DEBUG = True
+
