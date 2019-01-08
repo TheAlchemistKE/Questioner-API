@@ -17,3 +17,9 @@ class ProductionConfig(Config):
     """Production Phase Configurations Class."""
     DEBUG = False
     TESTING = False
+
+APP_CONFIG = {
+    "development": DevelopmentConfig,
+    "testing": TestingConfig,
+    "production": ProductionConfig
+}
