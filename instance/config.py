@@ -9,6 +9,11 @@ class DevelopmentConfig(Config):
     DEBUG = True
 
 class TestingConfig(Config):
-    """Testing Phase Configurations Clas"""
+    """Testing Phase Configurations Class."""
     DEBUG = True
     TESTING = True
+
+class ProductionConfig(Config):
+    """Production Phase Configurations Class."""
+    DEBUG = False
+    TESTING = False
