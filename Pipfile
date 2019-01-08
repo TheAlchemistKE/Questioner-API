@@ -12,6 +12,7 @@ flask-bcrypt = "*"
 pytest-cov = "*"
 gunicorn = "*"
 flask-restplus = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.6"
