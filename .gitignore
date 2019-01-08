@@ -64,7 +64,6 @@ local_settings.py
 db.sqlite3
 
 # Flask stuff:
-instance/
 .webassets-cache
 
 # Scrapy stuff:
@@ -123,7 +122,7 @@ dmypy.json
 .venv/
 
 ### VisualStudioCode ###
-.vscode/*
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
