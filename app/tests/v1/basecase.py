@@ -20,4 +20,6 @@ class TestBaseCase(unittest.TestCase):
         }
 
     def tearDown(self):
-        self.client
+        self.client = None
+        self.content_type = None
+        self.meetup_payload = None
