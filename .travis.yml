@@ -1,5 +1,16 @@
 language: python
 python:
   - "3.6"
+
 install:
-  - pip install -r re
+  - pip install -r requirements.txt
+  - pip install coveralls
+  - pip install codeclimate-test-reporter
+
+script: 
+  - pytest --cov=app
+  - coveralls
+
+after-success:
+  - coveralls 
+  - codeclimate-test-reporter
