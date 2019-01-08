@@ -10,6 +10,8 @@ pylint = "*"
 flask = "*"
 flask-bcrypt = "*"
 pytest-cov = "*"
+gunicorn = "*"
+flask-restplus = "*"
 
 [requires]
 python_version = "3.6"
