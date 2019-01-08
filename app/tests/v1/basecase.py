@@ -1,6 +1,5 @@
 """Base Case for all tests."""
 import unittest
-import json
 
 # Local Import
 from ... import create_app
