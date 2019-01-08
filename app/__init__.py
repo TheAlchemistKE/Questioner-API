@@ -5,3 +5,5 @@ from flask import Flask
 # Local Import
 from instance.config import APP_CONFIG
 
+def create_app(config_name):
+    
