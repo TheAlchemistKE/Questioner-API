@@ -11,6 +11,7 @@ class TestMeetup(base):
 
     def test_create_meetup(self):
         """Testing Creation of a Meetup."""
+            
         response = self.client.post('/api/v1/meetups', data=json.dumps(self.meetup_payload), content_type=self.content_type)
         response_data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 201)
