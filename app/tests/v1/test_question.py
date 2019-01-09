@@ -25,5 +25,7 @@ class TestQuestion(base):
         self.assertEqual(post_response_data["message"], "Question was created successfully.")
         # Fetching all questions.
         response = self.client.get('/api/v1/questions', content_type=self.content_type)
-        response_data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 200)
+
+    def test_fetch_single_question(self):
+        """Test fetching a single question"""
