@@ -5,12 +5,12 @@ import json
 from .basecase import TestBaseCase as base
 
 class TestQuestion(base):
-    """Testing the Meetup Endpoints with valid input."""
+    """Testing the Question Endpoints with valid input."""
     def setUp(self):
         base.setUp(self)
 
     def test_create_question(self):
-        """Testing Creation of a Meetup."""
+        """Testing Creation of a Question."""
             
         response = self.client.post('/api/v1/questions', data=json.dumps(self.question_payload), content_type=self.content_type)
         response_data = json.loads(response.data.decode())
