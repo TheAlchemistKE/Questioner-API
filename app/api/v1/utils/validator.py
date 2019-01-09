@@ -20,3 +20,18 @@ class MeetupDataTransferObject:
         "Tags": fields.String(description="The meetup category.")
 
     })
+
+class QuestionDataTransferObject:
+    """Question Validators."""
+    question_namespace = Namespace(
+        "Question Endpoint",
+        description="Responsible for creating, fetching, editing and deleting questions."
+    )
+    question_request_model = question_namespace.model("Question Request Model", {
+        "user": fields.Integer(description="The user's id."),
+        "meetup": fields.Integer(description="The meetup's ID."),
+        "title": fields.String(description="The question's title."),
+        "body": fields.String(description="The question's description.")
+
+    })
+

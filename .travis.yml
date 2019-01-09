@@ -8,8 +8,7 @@ install:
   - pip install codeclimate-test-reporter
 
 script: 
-  - pytest --cov=app
-  - coveralls
+  - pytest --cov-report term-missing --cov=app 
 
 after-success:
   - coveralls 
