@@ -11,11 +11,16 @@ class TestBaseCase(unittest.TestCase):
         self.client = create_app(config_name="testing").test_client()
         self.content_type = "application/json"
         self.meetup_payload = {
-            "location" : "Nairobi, Kenya",
-            "images" : ["http://www.techsoupeurope.org/wp-content/uploads/2018/07/TheHeorsOfTech-1024x576.png", "https://d1.awsstatic.com/Developer%20Marketing/Events/AWS-Minorities-In-Tech-Site-Banner.77f8c4afbcb5a20525278c95764f1590e4252329.png"],
-            "topic" : "Growing in Tech",
-            "happeningOn" : "31/01/2019",
-            "tags" : ["tech", "growth"]
+            "location": "Nakuru",
+            "image1": "www.google.com",
+            "image2": "www.facebook.com",
+            "image3": "www.pinterest.com",
+            "topic": "Growing in tech",
+            "happening_on": "21/01/2019",
+            "tag1": "Tech",
+            "tag2": "Growth",
+            "tag3": "Self-improvement"
+            
         }
 
     def tearDown(self):
