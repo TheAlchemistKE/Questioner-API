@@ -16,3 +16,6 @@ class TestMeetup(base):
         response_data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response_data["message"], "Meetup was created successfully.")
+
+    def test_fetching_all_meetups(self):
+        """Testing Fetching of all meetups."""
