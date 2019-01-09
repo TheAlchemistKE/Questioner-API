@@ -30,3 +30,7 @@ class QuestionModel():
         )
         self.questions.append(new_question)
         return new_question
+
+    def fetch_all_questions(self):
+        """Fetching all questions."""
+        return QuestionModel.questions
