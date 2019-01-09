@@ -27,4 +27,3 @@ class TestQuestion(base):
         response = self.client.get('/api/v1/questions', content_type=self.content_type)
         response_data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response_data["message"], "Successfully got all questions.")
