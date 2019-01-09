@@ -41,4 +41,14 @@ class QuestionList(Resource):
         response = Response(json.dumps(response_payload), status=201, mimetype="application/json")
         return response
 
+    def get(self):
+        """Fetch All Questions.""" 
+        questions = QuestionModel.fetch_all_questions(self)
+        response_payload = {
+            "status": 200,
+            "data": questions
+        }
+        response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
+        return response
+
 
