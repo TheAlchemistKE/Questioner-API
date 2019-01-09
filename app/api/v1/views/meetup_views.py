@@ -25,7 +25,7 @@ parser.add_argument("tag3", required=True, help="Please enter meetup tag.")
 meetup_request_model = MeetupDataTransferObject.meetup_request_model
 
 
-@meetup_api.route('')
+@meetup_api.route('', '/upcoming')
 class MeetupList(Resource):
     """Meetup endpoint."""
     @meetup_api.expect(meetup_request_model, validate=True)
@@ -55,4 +55,13 @@ class MeetupList(Resource):
         response = Response(json.dumps(response_payload), status=201, mimetype="application/json")
         return response
 
-        
+
+    def get(self):
+        """Fetching All Meetups"""
+        meetups = Meetup.fetch_all_meetups(self)
+        response_payload = {
+            "status": 200,
+            "data": meetups
+        }
+        response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
+        return response
