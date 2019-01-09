@@ -34,3 +34,7 @@ class Meetup:
         )
         self.meetups.append(new_meetup)
         return new_meetup
+
+    def fetch_all_meetups(self):
+        """Fetching all Meetup Records."""
+        
