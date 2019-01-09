@@ -37,4 +37,4 @@ class Meetup:
 
     def fetch_all_meetups(self):
         """Fetching all Meetup Records."""
-        
+        return Meetup.meetups
