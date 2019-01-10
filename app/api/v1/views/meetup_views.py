@@ -65,3 +65,17 @@ class MeetupList(Resource):
         }
         response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
         return response
+
+@meetup_api.route('/<int:meetup_id>')
+class SingleMeetup(Resource):
+    """Deals with operations on single meetup record."""
+    def get(self, meetup_id):
+        meetup = Meetup.fetch_single_meetup(meetup_id)
+        response_payload = {
+            "status": 200,
+            "data": meetup
+        }
+        response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
+        return response
+
+
