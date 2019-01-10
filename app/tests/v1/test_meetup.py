@@ -37,3 +37,6 @@ class TestMeetup(base):
         )
         response = self.client.get("/api/v1/meetups/upcoming", content_type=self.content_type)
         self.assertEqual(response.status_code, 200)
+
+    def test_fetch_single_meetup(self):
+        """Test fetching a single meetup."""
