@@ -38,3 +38,13 @@ class Meetup:
     def fetch_all_meetups(self):
         """Fetching all Meetup Records."""
         return Meetup.meetups
+
+    @staticmethod
+    def fetch_single_meetup(meetup_id):
+        """Fetching a specific meetup."""
+        meetups = Meetup.meetups
+        single_meetup = [meetup for meetup in meetups if meetup["id"] == meetup_id]
+        if single_meetup:
+            return single_meetup
+        else:
+            return "Meetup does not exist. Please create one."
