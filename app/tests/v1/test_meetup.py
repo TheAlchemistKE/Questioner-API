@@ -50,4 +50,5 @@ class TestMeetup(base):
         self.assertEqual(
             post_response_data["message"], "Meetup was created successfully."
         )
-
+        response = self.client.get("/api/v1/meetup/{}".format(post_response["data"]["id"], content_type=self.content_type))
+        self.assertEqual(response.status_code, 200)
