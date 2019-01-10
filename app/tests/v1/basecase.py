@@ -22,7 +22,7 @@ class TestBaseCase(unittest.TestCase):
             "tag3": "Self-improvement"
         }
         self.question_payload = {
-            "user":  , 
+            "user":  1, 
             "meetup": 1, 
             "title":  "Growing in tech?",
             "body":  "What is the main agenda of this meetup. Please clarify."
