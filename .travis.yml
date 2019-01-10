@@ -14,3 +14,4 @@ script:
 after-success:
   - coveralls 
   - codeclimate-test-reporter
+  - codecov --token=369e4024-0281-4f2d-9f64-70ebc7b81931
