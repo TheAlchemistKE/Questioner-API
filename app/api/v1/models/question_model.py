@@ -34,3 +34,13 @@ class QuestionModel():
     def fetch_all_questions(self):
         """Fetching all questions."""
         return QuestionModel.questions
+
+    @staticmethod
+    def fetch_specific_question(question_id):
+        """Fetching Specific Questions"""
+        all_questions = QuestionModel.questions
+        single_question = [question for question in all_questions if question["id"] == question_id]
+        if single_question:
+            return single_question
+        else:
+            return "Question does not exit. Please add it."
