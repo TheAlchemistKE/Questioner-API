@@ -22,10 +22,15 @@ class TestBaseCase(unittest.TestCase):
             "tag3": "Self-improvement"
         }
         self.question_payload = {
-            "user":  2, 
+            "user":  1, 
             "meetup": 1, 
             "title":  "Growing in tech?",
             "body":  "What is the main agenda of this meetup. Please clarify."
+        }
+        self.rsvp_payload = {
+            "meetup": 1,
+            "user": 1,
+            "response": "yes"
         }
 
     def tearDown(self):
