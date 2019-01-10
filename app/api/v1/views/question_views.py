@@ -60,6 +60,6 @@ class SingleQuestions(Resource):
             "status": 200,
             "data": question
         }
+        # Response
         response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
         return response
-
