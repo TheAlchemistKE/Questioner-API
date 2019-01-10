@@ -40,3 +40,14 @@ class TestMeetup(base):
 
     def test_fetch_single_meetup(self):
         """Test fetching a single meetup."""
+        post_response = self.client.post(
+            "/api/v1/meetups",
+            data=json.dumps(self.meetup_payload),
+            content_type=self.content_type
+        )
+        post_response_data = json.loads(post_response.data.decode())
+        self.assertEqual(post_response.status_code, 201)
+        self.assertEqual(
+            post_response_data["message"], "Meetup was created successfully."
+        )
+
