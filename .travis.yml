@@ -5,7 +5,6 @@ python:
 install:
   - pip install -r requirements.txt
   - pip install coveralls
-  - pip install codecov
   - pip install codeclimate-test-reporter
 
 script: 
@@ -14,4 +13,3 @@ script:
 after-success:
   - coveralls 
   - codeclimate-test-reporter
-  - codecov --token=369e4024-0281-4f2d-9f64-70ebc7b81931
