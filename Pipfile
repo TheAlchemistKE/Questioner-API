@@ -13,6 +13,9 @@ pytest-cov = "*"
 gunicorn = "*"
 flask-restplus = "*"
 python-dotenv = "*"
+coveralls = "*"
+codecov = "*"
+codeclimate-test-reporter = "*"
 
 [requires]
 python_version = "3.6"
