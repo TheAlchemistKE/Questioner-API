@@ -19,7 +19,7 @@ parser.add_argument("body", required=True, help="Add Question Body.")
 
 question_request_model = QuestionDataTransferObject.question_request_model
 
-@question_api.route('')
+@question_api.route('', '/upcoming')
 class QuestionList(Resource):
     """Question Endpoint."""
     @question_api.expect(question_request_model, validate=True)
@@ -51,4 +51,15 @@ class QuestionList(Resource):
         response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
         return response
 
-
+@question_api.route('/<int:question_id>')
+class SingleQuestions(Resource):
+    """Deals with all operations on specific questions."""
+    def get(self, question_id):
+        question = QuestionModel.fetch_specific_question(question_id)
+        response_payload = {
+            "status": 200,
+            "data": question
+        }
+        # Response
+        response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
+        return response
