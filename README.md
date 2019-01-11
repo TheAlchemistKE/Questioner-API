@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0dd5d80a20f94c2da86808f0c20125fd)](https://app.codacy.com/app/KelynPNjeri/Questioner-API?utm_source=github.com&utm_medium=referral&utm_content=KelynPNjeri/Questioner-API&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.com/KelynPNjeri/Questioner-API.svg?branch=develop)](https://travis-ci.com/KelynPNjeri/Questioner-API)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ff91486e5e85335922eb/maintainability)](https://codeclimate.com/github/KelynPNjeri/Questioner-API/maintainability)
 [![Coverage Status](https://coveralls.io/repos/github/KelynPNjeri/Questioner-API/badge.svg?branch=develop)](https://coveralls.io/github/KelynPNjeri/Questioner-API?branch=develop)
