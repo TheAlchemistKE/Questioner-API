@@ -56,3 +56,13 @@ class QuestionModel():
             return upvote_question
         else:
             return "Question does not exist."
+
+    def downvote_question(self, question_id):
+        """Upvote question"""
+        questions = QuestionModel.questions
+        downvote_question = [question for question in questions if question["id"] == question_id]
+        if downvote_question:
+            downvote_question[0]["votes"] = downvote_question[0]["votes"] - 1
+            return downvote_question
+        else:
+            return "Question does not exist."

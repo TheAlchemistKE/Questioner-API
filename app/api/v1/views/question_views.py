@@ -78,3 +78,18 @@ class Upvote(Resource):
             return response
         else:
             return "Error 404."
+
+@question_api.route('/<int:question_id>/downvote')
+class Downvote(Resource):
+    """Deals with question downvote."""
+    def patch(self, question_id):
+        downvote_question = QuestionModel.downvote_question(self, question_id)
+        if downvote_question:
+            response_payload = {
+                "status": 200,
+                "data": downvote_question
+            }
+            response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
+            return response
+        else:
+            return "Error 404."
