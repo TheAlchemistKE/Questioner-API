@@ -7,7 +7,7 @@ import json
 
 # Local Imports.
 from ..models.question_model import QuestionModel
-from ..utils.validator import QuestionDataTransferObject
+from ..utils.serializer import QuestionDataTransferObject
 
 question_api = QuestionDataTransferObject.question_namespace
 

@@ -28,8 +28,8 @@ class TestBaseCase(unittest.TestCase):
             "body":  "What is the main agenda of this meetup. Please clarify."
         }
         self.rsvp_payload = {
-            "meetup": 1,
             "user": 1,
+            "meetup": 1,
             "response": "yes"
         }
 

@@ -7,23 +7,23 @@ from flask_restplus import reqparse, Resource
 
 # Local Imports
 from ..models.meetup_model import Meetup
-from ..utils.validator import MeetupDataTransferObject
+from ..utils.serializer import MeetupDataTransferObject
 
 meetup_api = MeetupDataTransferObject.meetup_namespace
 
 parser = reqparse.RequestParser()
-parser.add_argument("location", required=True, help="Please enter meetup location.")
+# Meetup Arguments
+parser.add_argument("location", type=str ,required=True, help="Please enter meetup location.")
 parser.add_argument("image1", required=True, help="Please enter meetup image.")
 parser.add_argument("image2", help="Please enter meetup image.")
 parser.add_argument("image3", help="Please enter meetup image.")
-parser.add_argument("topic", required=True, help="Please enter meetup topic.")
-parser.add_argument("happening_on", required=True, help="Please enter meetup date.")
+parser.add_argument("topic", type=str ,required=True, help="Please enter meetup topic.")
+parser.add_argument("happening_on", type=str ,required=True, help="Please enter meetup date.")
 parser.add_argument("tag1", required=True, help="Please enter meetup tag.")
 parser.add_argument("tag2", required=True, help="Please enter meetup tag.")
 parser.add_argument("tag3", required=True, help="Please enter meetup tag.")
 
 meetup_request_model = MeetupDataTransferObject.meetup_request_model
-
 
 @meetup_api.route('', '/upcoming')
 class MeetupList(Resource):
@@ -70,6 +70,7 @@ class MeetupList(Resource):
 class SingleMeetup(Resource):
     """Deals with operations on single meetup record."""
     def get(self, meetup_id):
+        """Getting a specific meetup"""
         meetup = Meetup.fetch_single_meetup(meetup_id)
         response_payload = {
             "status": 200,
@@ -77,5 +78,4 @@ class SingleMeetup(Resource):
         }
         response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
         return response
-
 

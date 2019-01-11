@@ -48,3 +48,16 @@ class Meetup:
             return single_meetup
         else:
             return "Meetup does not exist. Please create one."
+
+    @staticmethod
+    def create_an_rsvp(user_id, meetup_id, response):
+        rsvps = []
+        new_rsvp = dict(
+            id=len(rsvps) + 1,
+            user=user_id,
+            meetup=meetup_id,
+            status=response
+        )
+        rsvps.append(new_rsvp)
+        return new_rsvp
+
