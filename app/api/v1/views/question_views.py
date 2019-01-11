@@ -63,3 +63,18 @@ class SingleQuestions(Resource):
         # Response
         response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
         return response
+
+@question_api.route('/<int:question_id>/upvote')
+class Upvote(Resource):
+    """Deals with question upvote."""
+    def patch(self, question_id):
+        upvote_question = QuestionModel.upvote_question(self, question_id)
+        if upvote_question:
+            response_payload = {
+                "status": 200,
+                "data": upvote_question
+            }
+            response = Response(json.dumps(response_payload), status=200, mimetype="application/json")
+            return response
+        else:
+            return "Error 404."

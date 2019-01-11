@@ -17,6 +17,7 @@ class QuestionModel():
         self.meetup = meetup
         self.title = title
         self.body = body
+        self.votes = 0
 
     def create_question_record(self):
         """Creating Question Record."""
@@ -26,7 +27,8 @@ class QuestionModel():
             user=self.user,
             meetup=self.meetup,
             title=self.title,
-            body=self.body
+            body=self.body,
+            votes=self.votes
         )
         self.questions.append(new_question)
         return new_question
@@ -44,3 +46,13 @@ class QuestionModel():
             return single_question
         else:
             return "Question does not exit. Please add it."
+
+    def upvote_question(self, question_id):
+        """Upvote question"""
+        questions = QuestionModel.questions
+        upvote_question = [question for question in questions if question["id"] == question_id]
+        if upvote_question:
+            upvote_question[0]["votes"] = upvote_question[0]["votes"] + 1
+            return upvote_question
+        else:
+            return "Question does not exist."
