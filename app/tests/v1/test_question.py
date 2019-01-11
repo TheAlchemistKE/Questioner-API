@@ -48,3 +48,7 @@ class TestQuestion(base):
         response_data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response_data["data"][0]["votes"], 1)
+
+    def test_downvote(self):
+        """Testing downvoting a question."""
+        
