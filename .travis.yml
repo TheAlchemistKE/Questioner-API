@@ -1,17 +1,19 @@
 language: python
+
 python:
-  - "3.6"
+  - 3.6
 
 install:
   - pip install -r requirements.txt
   - pip install coveralls
-  - pip install codecov
-  - pip install codeclimate-test-reporter
 
 script: 
-  - pytest --cov-report term-missing --cov=app 
+  - pytest --cov-report term-missing --cov=app
+  - coveralls
 
-after-success:
-  - coveralls 
-  - codeclimate-test-reporter
+after_success:
+  - coveralls
   - codecov --token=369e4024-0281-4f2d-9f64-70ebc7b81931
+
+cache:
+  - pip
