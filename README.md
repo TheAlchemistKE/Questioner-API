@@ -6,7 +6,6 @@
 Questioner web app, is an online platform that crowd-sources questions from users about meetups.
 
 ## API ENDPOINTS
-To run the endpoints in postman:
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/470df32a30646e961eb9)
 #### Question Endpoints.
 | API Endpoint  | Description | Methods |
