@@ -68,4 +68,4 @@ class TestMeetup(base):
         response = self.client.get('api/v1/meetups/{}'.format(4), content_type=self.content_type)
         response_data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 404)
-        self.assertEqual(response["error"], "Invalid meetup Id")
+        self.assertEqual(response_data["error"], "Invalid meetup Id")
