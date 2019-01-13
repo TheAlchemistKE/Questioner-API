@@ -50,7 +50,6 @@ class TestMeetup(base):
 
     def test_rsvp_to_meetup(self):
         """Test RSVPing to a meetup."""
-        """Test fetching a single meetup."""
         post_response = self.client.post('/api/v1/meetups', data=json.dumps(self.meetup_payload), content_type=self.content_type)
         post_response_data = json.loads(post_response.data.decode())
         self.assertEqual(post_response.status_code, 201)
@@ -59,6 +58,14 @@ class TestMeetup(base):
         response = self.client.post('/api/v1/meetups/{}/rsvps'.format(post_response_data["data"]["id"]), data=json.dumps(self.rsvp_payload), content_type=self.content_type)
         self.assertEqual(response.status_code, 201)
 
-        
-
-
+    def test_find_missing_meetup(self):
+        """Test Finding a non-existent meetup by ID."""
+        post_response = self.client.post('/api/v1/meetups', data=json.dumps(self.meetup_payload), content_type=self.content_type)
+        post_response_data = json.loads(post_response.data.decode())
+        self.assertEqual(post_response.status_code, 201)
+        self.assertEqual(post_response_data["message"], "Meetup was created successfully.")
+        # Fetching Single Question.
+        response = self.client.get('api/v1/meetups/{}'.format(4), content_type=self.content_type)
+        response_data = json.loads(response.data.decode())
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response["error"], "Invalid meetup Id")
