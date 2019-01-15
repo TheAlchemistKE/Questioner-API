@@ -90,7 +90,7 @@ class TestBaseCase(unittest.TestCase):
         }
         self.login_payload = {
             "username": "testuser",
-            "password2": "Test@12345"
+            "password1": "Test@12345"
         }
         self.bad_login_payload = {
             "username": "testuser32",
