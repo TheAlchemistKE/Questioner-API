@@ -9,10 +9,10 @@ from .base_model import BaseModel
 class AuthModel(BaseModel):
     """Models for meetup views."""
 
-    def find_user_by_username(self, db, username):
+    def find_user_by_username(self, db, email):
         data_store = BaseModel.check_db(db)
         existing_user = [
-            user for user in data_store if user["username"] == username]
+            user for user in data_store if user["email"] == email]
         if existing_user:
             return "User already exists"
 
