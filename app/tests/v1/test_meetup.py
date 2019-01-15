@@ -85,16 +85,62 @@ class TestMeetup(base):
             post_response_data["data"][0]["id"]), data=json.dumps(self.rsvp_payload), content_type=self.content_type)
         self.assertEqual(response.status_code, 201)
 
-    # @data(20, 40, 50, 60)
-    # def test_rsvp_to_non_existent_meetup(self, value):
-    #     """Test RSVPing to a non-existent meetup."""
-    #     post_response = self.client.post(
-    #         '/api/v1/meetups', data=json.dumps(self.meetup_payload), content_type=self.content_type)
-    #     post_response_data = json.loads(post_response.data.decode())
-    #     self.assertEqual(post_response.status_code, 201)
-    #     self.assertEqual(
-    #         post_response_data["message"], "Meetup was created successfully.")
-    #     # Posting RSVP.
-    #     response = self.client.post('/api/v1/meetups/{}/rsvps'.format(
-    #         value), data=json.dumps(self.rsvp_payload), content_type=self.content_type)
-    #     self.assertEqual(response.status_code, 404)
+    @data({
+            "location": "Nakuru",
+            "image1": "www.google.com",
+            "image2": "www.facebook.com",
+            "image3": "www.pinterest.com",
+            "topic": "",
+            "happening_on": "21/01/2019",
+            "description": "This is my event description.",
+            "tag1": "Tech",
+            "tag2": "Growth",
+            "tag3": "Self-improvement"
+        },
+        {
+            "location": "",
+            "image1": "www.google.com",
+            "image2": "www.facebook.com",
+            "image3": "www.pinterest.com",
+            "topic": "Technical Growth",
+            "happening_on": "21/01/2019",
+            "description": "This is my event description.",
+            "tag1": "Tech",
+            "tag2": "Growth",
+            "tag3": "Self-improvement"
+        },
+        {
+            "location": "Nakuru",
+            "image1": "www.google.com",
+            "image2": "www.facebook.com",
+            "image3": "www.pinterest.com",
+            "topic": " ",
+            "happening_on": "21/01/2019",
+            "description": "This is my event description.",
+            "tag1": "Tech",
+            "tag2": "Growth",
+            "tag3": "Self-improvement"
+        },
+        {
+            "location": " ",
+            "image1": "www.google.com",
+            "image2": "www.facebook.com",
+            "image3": "www.pinterest.com",
+            "topic": "Technical Growth",
+            "happening_on": "21/01/2019",
+            "description": "This is my event description.",
+            "tag1": "Tech",
+            "tag2": "Growth",
+            "tag3": "Self-improvement"
+        })
+    def testing_empty_string_input(self, value):
+        response = self.client.post(
+            "/api/v1/meetups",
+            data=json.dumps(value),
+            content_type=self.content_type,
+        )
+        response_data = json.loads(response.data.decode())
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response_data["message"],
+                         "Fields cannot be empty or spaces.")
+
