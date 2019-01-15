@@ -16,6 +16,7 @@ python-dotenv = "*"
 coveralls = "*"
 codecov = "*"
 codeclimate-test-reporter = "*"
+ddt = "*"
 
 [requires]
 python_version = "3.6"

@@ -1,26 +1,24 @@
 """
-    Meetup Models
+    User Models
     Author: Kelyn Paul Njeri.
 """
-from datetime import datetime
-import json
 
 from .base_model import BaseModel
 
 
-class Meetup(BaseModel):
+class AuthModel(BaseModel):
     """Models for meetup views."""
 
-    def find_meetup_by_title(self, db, title):
+    def find_user_by_username(self, db, username):
         data_store = BaseModel.check_db(db)
-        existing_meetup = [
-            meetup for meetup in data_store if meetup["topic"] == title]
-        if existing_meetup:
-            return "Meetup already exists"
+        existing_user = [
+            user for user in data_store if user["username"] == username]
+        if existing_user:
+            return "User already exists"
 
     def fetch_all_meetups(self):
         """Fetching all Meetup Records."""
-        return BaseModel.retrieve_data(self, db="meetups")
+        return BaseModel.retrieve_data(self, db="users")
 
     @staticmethod
     def create_an_rsvp(user_id, meetup_id, response):
