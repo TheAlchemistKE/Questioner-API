@@ -16,7 +16,7 @@ class MeetupDataTransferObject():
         "location": fields.String(description="The meetup location."),
         "images": fields.String(description="The URLs to the images of the meetup."),
         "topic": fields.String(description="The name of the meetup."),
-        "happeningOn": fields.DateTime(dt_format='rfc822', description="Date when the event will be happening.")
+        "happeningOn": fields.DateTime(dt_format='rfc822', description="Date when the event will be happening."),
         "Tags": fields.String(description="The meetup category.")
 
     })

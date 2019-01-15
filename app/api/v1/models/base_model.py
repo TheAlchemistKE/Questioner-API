@@ -25,10 +25,10 @@ class BaseModel:
             data["votes"] = 0
         elif data_store is meetups:
             data["id"] = len(data_store) + 1
-            data["createdOn"] = json.dumps(datetime.now(), default=str)
+            data["createdOn"] = str(datetime.now())
         elif data_store is users:
-            data["id"] == len(data_store) + 1
-            data["registeredOn"] = json.dumps(datetime.now(), default=str)
+            data["id"] = len(data_store) + 1
+            data["registeredOn"] = str(datetime.now())
         data_store.append(data)
         return data_store
 
