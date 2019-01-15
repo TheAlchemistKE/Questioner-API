@@ -93,13 +93,13 @@ class LoginUser(Resource):
         """Log In."""
         request_data = parser.parse_args()
         username = request_data["username"]
-        
+        password = request_data["password1"]
         
         check_existing = AuthModel.find_user_by_username(self, db="users", username=username)
-        if check_existing == "User already exists.":
+        if check_existing:
             login = {
                 "status": 200,
-                "message": "User Logged in successfully as {}".format(username) 
+                "message": "User login successful."
             }
             response = Response(json.dumps(login), status=200, mimetype="application/json")
             return response
