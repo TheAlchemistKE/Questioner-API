@@ -62,7 +62,27 @@ class TestBaseCase(unittest.TestCase):
             "firstname": "Kelyn",
             "lastname": "Njeri",
             "othername": "Paul",
-            "email": "example@gmail.com",
+            "email": "example12@gmail.com",
+            "phoneNumber": "0722997807",
+            "username": "testuser",
+            "password1": "Test@12345",
+            "password2": "Test@12345"
+        }
+        self.registration_payload1 = {
+            "firstname": "Kelyn",
+            "lastname": "Njeri",
+            "othername": "Paul",
+            "email": "example1@gmail.com",
+            "phoneNumber": "0722997807",
+            "username": "testuser",
+            "password1": "Test@12345",
+            "password2": "Test@12345"
+        }
+        self.registration_payload2 = {
+            "firstname": "Kelyn",
+            "lastname": "Njeri",
+            "othername": "Paul",
+            "email": "example123@gmail.com",
             "phoneNumber": "0722997807",
             "username": "testuser",
             "password1": "Test@12345",
@@ -70,7 +90,7 @@ class TestBaseCase(unittest.TestCase):
         }
         self.login_payload = {
             "username": "testuser",
-            "password": "Test@12345"
+            "password2": "Test@12345"
         }
         self.bad_login_payload = {
             "username": "testuser32",
