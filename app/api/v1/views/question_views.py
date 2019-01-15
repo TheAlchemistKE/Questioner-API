@@ -8,6 +8,7 @@ from werkzeug.exceptions import NotFound
 # Local Imports.
 from ..models.question_model import QuestionModel
 from ..utils.serializer import QuestionDataTransferObject
+from ..utils.validator import Validator
 
 question_api = QuestionDataTransferObject.question_namespace
 
@@ -37,16 +38,25 @@ class QuestionList(Resource):
             title=title,
             body=body
         )
-        save_question = QuestionModel.create_question_record(
-            self, data=new_question)
-        response_payload = dict(
-            status=201,
-            message="Question was created successfully.",
-            data=save_question
-        )
-        response = Response(json.dumps(response_payload),
-                            status=201, mimetype="application/json")
-        return response
+        check_payload = Validator.check_input_for_null_entry(data=new_question)
+        if check_payload:
+            save_question = QuestionModel.create_question_record(
+                self, data=new_question)
+            response_payload = dict(
+                status=201,
+                message="Question was created successfully.",
+                data=save_question
+            )
+            response = Response(json.dumps(response_payload),
+                                status=201, mimetype="application/json")
+            return response
+        error_payload = dict(
+                status=400,
+                error="Null fields.",
+                message="Fields cannot be empty or spaces."
+            )
+        error_resp = Response(json.dumps(error_payload), status=400, mimetype="application/json")
+        return error_resp
 
     def get(self):
         """Fetch All Questions."""
