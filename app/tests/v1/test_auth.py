@@ -8,14 +8,14 @@ class TestAuthentication(base):
 
     def test_user_registration(self):
         """Testing User Registration."""
-        response = self.client.post('/api/v1/auth/register', data=json.dumps(self.registration_payload), content_type=self.content_type)
+        response = self.client.post('/api/v1/auth/register', data=json.dumps(self.registration_payload1), content_type=self.content_type)
         response_data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 201)
         self.assertEqual(response_data["message"], "User registered successfully. Please Log in.")
     
     def test_user_login(self):
         """Testing Logging In."""
-        post_response = self.client.post('/api/v1/auth/register', data=json.dumps(self.registration_payload), content_type=self.content_type)
+        post_response = self.client.post('/api/v1/auth/register', data=json.dumps(self.registration_payload2), content_type=self.content_type)
         post_response_data = json.loads(post_response.data.decode())
         self.assertEqual(post_response.status_code, 201)
         self.assertEqual(post_response_data["message"], "User registered successfully. Please Log in.")
@@ -39,7 +39,7 @@ class TestAuthentication(base):
         response = self.client.post('/api/v1/auth/register', data=json.dumps(self.registration_payload), content_type=self.content_type)
         response_data = json.loads(response.data.decode())
         self.assertEqual(response.status_code, 409)
-        self.assertEqual(response_data["message"], "User already exists.")
+        self.assertEqual(response_data["message"], "Use another email or login.")
 
 
         
