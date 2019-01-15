@@ -8,6 +8,7 @@ from werkzeug.exceptions import NotFound
 # Local Imports
 from ..models.meetup_model import Meetup
 from ..utils.serializer import MeetupDataTransferObject
+from ..utils.validator import Validator
 
 meetup_api = MeetupDataTransferObject.meetup_namespace
 
@@ -60,15 +61,24 @@ class MeetupList(Resource):
             description=description,
             tags=tags
         )
-        save_meetup = Meetup.save_data(self, db="meetups", data=meetup_payload)
-        response_payload = dict(
-            status=201,
-            message="Meetup was created successfully.",
-            data=save_meetup
-        )
-        response = Response(json.dumps(response_payload),
-                            status=201, mimetype="application/json")
-        return response
+        check_payload = Validator.check_input_for_null_entry(data=meetup_payload)
+        if check_payload:
+            save_meetup = Meetup.save_data(self, db="meetups", data=meetup_payload)
+            response_payload = dict(
+                status=201,
+                message="Meetup was created successfully.",
+                data=save_meetup
+            )
+            response = Response(json.dumps(response_payload),
+                                status=201, mimetype="application/json")
+            return response
+        error_payload = dict(
+                status=400,
+                error="Null fields.",
+                message="Fields cannot be empty or spaces."
+            )
+        error_resp = Response(json.dumps(error_payload), status=400, mimetype="application/json")
+        return error_resp
 
 
 @meetup_api.route('/upcoming')
