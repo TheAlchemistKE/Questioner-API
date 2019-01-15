@@ -3,6 +3,7 @@ from datetime import datetime
 meetups = []
 questions = []
 users = []
+rsvps = []
 
 
 class BaseModel:
@@ -17,6 +18,9 @@ class BaseModel:
         elif db == "users":
             data_store = users
             return data_store
+        elif db == "rsvp":
+            data_store = rsvps
+            return data_store
 
     def save_data(self, db, data):
         data_store = BaseModel.check_db(db)
@@ -29,6 +33,8 @@ class BaseModel:
         elif data_store is users:
             data["id"] = len(data_store) + 1
             data["registeredOn"] = str(datetime.now())
+        elif data_store is rsvps:
+            data["id"] = len(data_store) + 1
         data_store.append(data)
         return data_store
 

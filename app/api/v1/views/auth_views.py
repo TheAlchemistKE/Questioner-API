@@ -52,22 +52,36 @@ class RegisterUser(Resource):
                 password1=password1,
                 password2=password2
             )
-            check_payload = Validator.check_input_for_null_entry(register_payload)
+            check_payload = Validator.check_input_for_null_entry(data=register_payload)
             if check_payload:
+                if AuthModel.find_user_by_email(self, db="users", email=email):
+                    error_payload = dict(
+                        status=409,
+                        error="User already exists.",
+                        message="Use another email or login."
+                    )
+                    error_response = Response(json.dumps(error_payload), status=409, mimetype="application/json")
+                    return error_response
                 register_user = AuthModel.save_data(self, db="users", data=register_payload)
-                response = Response(json.dumps(register_user), status=201, mimetype="application/json")
+                register_response = dict(
+                    status="201",
+                    status_message="Success",
+                    message="User registered successfully. Please Log in.",
+                    data=register_user
+                )
+                response = Response(json.dumps(register_response), status=201, mimetype="application/json")
                 return response
             error_payload = dict(
                 status=400,
-                error=check_payload,
-                message="Fields cannot be empty."
+                error="Null fields.",
+                message="Fields cannot be empty or spaces."
             )
             error_resp = Response(json.dumps(error_payload), status=400, mimetype="application/json")
             return error_resp
         error_payload = dict(
             status="400",
             error="Error with either your email or password",
-            message="Check password and email."
+            message="Enter correct email. Passwords must match."
         )
         error = BadRequest()
         error.data = error_payload
@@ -79,23 +93,20 @@ class LoginUser(Resource):
         """Log In."""
         request_data = parser.parse_args()
         username = request_data["username"]
-        password = request_data["password"]
-        login_payload = dict(
-            username=username,
-            password=password
-        )
-        check_existing = AuthModel.find_user_by_username(self, "users", username)
-        if check_existing == "User already exists.":
+        password = request_data["password1"]
+        
+        check_existing = AuthModel.find_user_by_username(self, db="users", username=username)
+        if check_existing:
             login = {
                 "status": 200,
-                "message": "User Logged in successfully" 
+                "message": "User login successful."
             }
             response = Response(json.dumps(login), status=200, mimetype="application/json")
             return response
         else:
             error_payload = dict(
                 status=404,
-                error="User doesn't exist.",
+                error="User does not exist.",
                 message="Please register user"
             )
             error = NotFound()
