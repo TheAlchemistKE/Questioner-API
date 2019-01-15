@@ -16,6 +16,14 @@ class AuthModel(BaseModel):
         if existing_user:
             return "User already exists"
 
+    def find_user_by_username(self, db, username):
+        data_store = BaseModel.check_db(db)
+        existing_user = [
+            user for user in data_store if user["username"] == username]
+        if existing_user:
+            return "User already exists"
+
+
     def fetch_all_meetups(self):
         """Fetching all Meetup Records."""
         return BaseModel.retrieve_data(self, db="users")
